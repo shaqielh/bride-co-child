@@ -5,6 +5,8 @@
  * Updated: Complete color palette from Excel (Nov 2025)
  * UPDATED: Reordered variations - Colour displays before Size
  * 
+  * @version     1.6.4
+
  * @package Bride-co-child
  */
 
