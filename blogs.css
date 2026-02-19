@@ -1,0 +1,206 @@
+body{
+    background-color:#fff;
+}
+
+.entry-content{
+	padding:0;
+	margin:0
+}
+/* Blog: https://stage.brideandco.co.za/stunning-2025-wedding-dress-trends-every-south-african-bride-needs-to-know/ */
+
+/* Hero */
+.wp-container-core-columns-is-layout-9d6595d7{
+		background-color: #F6EFEA;
+	margin:0;
+    margin-bottom:30px;
+}
+
+.wp-container-core-columns-is-layout-9d6595d7 h1{
+	padding-left:50px;
+		padding-right:50px;
+	padding-top:50px;
+    color:#404040;
+font-size: 22px;
+font-family: "Poppins";
+line-height: 35px;
+font-weight: 600;
+}
+
+.wp-container-core-columns-is-layout-9d6595d7 p{
+
+    font-size: 16px;
+    font-family: "Poppins";
+    color:#808080;;
+
+}
+
+
+.wp-container-core-columns-is-layout-9d6595d7 .wp-block-buttons
+{
+	padding-left:50px;
+		padding-right:50px;
+		padding-bottom:50px;
+
+}
+
+
+.hero-img-bg-20140341{
+    background-image: url('/wp-content/uploads/2025/04/Iconic-TEXT-1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/* First button */
+.wp-container-core-columns-is-layout-9d6595d7 .wp-block-button:first-child .wp-block-button__link {
+    background-color: #ddcdbf;
+    color: #808080;
+    border-color: #ddcdbf;
+        font-size: 14px !important;
+
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-weight: 600;
+}
+
+/* Second button */
+.wp-container-core-columns-is-layout-9d6595d7 .wp-block-button:last-child .wp-block-button__link {
+      background-color: #404040;
+    color: #fff;
+    border-color: #404040;
+        font-size: 14px !important;
+
+    border-radius: 10px;
+    padding: 15px 30px;
+    font-weight: 600;
+}
+
+.hero-left-big-img-right-small p{
+padding-left:50px;
+}
+
+
+/* 2nd Heading */
+
+.wp-container-core-columns-is-layout-9d6595d7 > h2{
+padding-top:50px;
+}
+
+.has-text-align-left{
+    padding-lefT:50px;
+    padding-right:50px;
+}
+
+
+
+.product-row-4-20140341{
+      padding:50px; 
+    background-color:#fff;
+}
+
+span.woocommerce-Price-amount.amount{
+    color:#DDCDBF!important;
+    font-weight:bold!important; 
+        font-family: "Poppins"!important;
+}
+
+
+.wp-block-woocommerce-single-product .wp-block-post-title{
+color: #747474 !important;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+.wp-block-separator{
+        margin-top: 15px;
+    margin-bottom: 15px;
+    background-color:#000;
+        border-top: 1px solid;
+        margin-left:50px;
+        margin-right:50px;
+}
+
+
+.hero-left-big-img-right-small h1{
+line-height: 50px;    
+}
+
+.cta-column .bookly-form{
+       width: 80%;
+    margin-left: 50px; 
+}
+
+
+.bookly-form{
+     width: 80%;
+    margin-left: 50px; 
+}
+
+.cta-column figure{
+    height: 100%!important;
+}
+
+.cta-column img{
+        object-fit: cover !important;
+        height: 100%!important;
+}
+
+ .padding-left{
+padding:50px!important;
+}
+
+@media (max-width: 40rem) {
+
+ .padding-left{
+padding:20px!important;
+}
+
+
+.cta-column .bookly-form{
+       width: 100%;
+    margin-left: 20px; 
+}
+
+
+.hero-left-big-img-right-small h1{
+line-height: 30px;    
+}
+
+
+.wp-container-core-columns-is-layout-9d6595d7 > h2{
+padding-top:20px;
+}
+
+.has-text-align-left{
+    padding-lefT:20px;
+    padding-right:20px;
+}
+
+
+
+.product-row-4-20140341{
+      padding:20px; 
+}
+
+
+
+
+.wp-container-core-columns-is-layout-9d6595d7 .wp-block-buttons
+{
+	padding-left:20px; 
+		padding-right:20px; 
+		padding-bottom:20px; 
+
+}
+
+
+.wp-container-core-columns-is-layout-9d6595d7 h1{
+	padding-left:20px; 
+		padding-right:20px; 
+	padding-top:20px; 
+
+}
+
+}

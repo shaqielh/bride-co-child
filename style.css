@@ -1,0 +1,255 @@
+/* 
+Theme Name:		 Bride&co Child
+Theme URI:		 http://childtheme-generator.com/
+Description:	 Bride&co Child is a child theme of Bride&co, created by ChildTheme-Generator.com
+Author:			 Shaqiel
+Author URI:		 http://childtheme-generator.com/
+Template:		 brideco
+Version:		 1.0.0
+Text Domain:	 bride-co-child
+*/
+
+
+/*
+    Add your custom styles here
+*/
+
+/**
+ * WooCommerce Stock Rules Manager - Frontend Styles
+ * Version: 1.0.0
+ */
+
+/* Archive/Shop Page Styles */
+.product.view-only .add_to_cart_button,
+.product.view-only .ajax_add_to_cart {
+    display: none !important;
+}
+
+.product.view-only .view-only-button {
+    background: #808080 !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.product.view-only .view-only-button:hover {
+    background: #666 !important;
+}
+
+/* View Only Badge */
+.product.view-only::before {
+    content: "Limited Stock";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff6b6b;
+    color: white;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: bold;
+    z-index: 10;
+    text-transform: uppercase;
+}
+
+/* Single Product Page Styles */
+body.product-stock-view_only .single_add_to_cart_button {
+    display: none !important;
+}
+
+body.product-stock-view_only .quantity {
+    display: none !important;
+}
+
+/* Stock Status Messages */
+.stock-status-message {
+    background: #f7f6f5;
+    border: 1px solid #dcdcdc;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stock-status-message.view-only {
+    background: #fff5f5;
+    border-color: #ff6b6b;
+    color: #c0392b;
+}
+
+.stock-status-message.low-stock {
+    background: #fffbf0;
+    border-color: #f39c12;
+    color: #e67e22;
+}
+
+.stock-status-message i {
+    font-size: 18px;
+}
+
+/* Disabled Variation Options */
+.variation-option.stock-disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    position: relative;
+}
+
+.variation-option.stock-disabled::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        rgba(0,0,0,0.1) 5px,
+        rgba(0,0,0,0.1) 10px
+    );
+}
+
+/* Size Options - Greyed Out */
+.size-option.stock-view-only {
+    background: #f5f5f5 !important;
+    color: #999 !important;
+    border-color: #ddd !important;
+    cursor: not-allowed !important;
+    text-decoration: line-through;
+}
+
+/* Color Options - Line Through */
+.color-option.stock-view-only::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    right: -2px;
+    height: 2px;
+    background: #ff0000;
+    transform: rotate(-45deg);
+    z-index: 10;
+}
+
+/* View Only Notice */
+.wc-stock-view-only-notice {
+    background: #DDCDBF;
+    border: 1px solid #808080;
+    color: #333;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.wc-stock-view-only-notice i {
+    color: #808080;
+    font-size: 20px;
+}
+
+.wc-stock-view-only-notice strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+/* Availability Text */
+p.stock.view-only {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
+/* Shop/Archive Responsive */
+@media (max-width: 768px) {
+    .product.view-only::before {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+
+/* Variation Swatches Integration */
+.variable-items-wrapper .variable-item.stock-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Quick View Modal Adjustments */
+.quick-view-modal .stock-status-message {
+    margin-top: 10px;
+}
+
+/* WooCommerce Notices Override */
+.woocommerce-error.stock-rule-error {
+    background: #fff5f5;
+    border-color: #ff6b6b;
+}
+
+/* Loading State */
+.stock-checking {
+    position: relative;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.stock-checking::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 2px solid #333;
+    animation: stock-spin 1s linear infinite;
+}
+
+@keyframes stock-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Product Grid Adjustments */
+.products .product.stock-hidden {
+    display: none !important;
+}
+
+/* Ensure Visibility of In-Store Message */
+.in-store-only-badge {
+    display: inline-block;
+    background: #808080;
+    color: white;
+    padding: 4px 12px;
+    font-size: 12px;
+    margin-top: 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+.product-pricing {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+.product-pricing .sale-price {
+  color: #c1272d;
+  font-weight: 600;
+  margin-right: 8px;
+}
+.product-pricing .old-price {
+  text-decoration: line-through;
+  color: #777;
+  font-weight: 400;
+}
+
+
+.sale-price bdi{
+    color:#000!important
+}
+
