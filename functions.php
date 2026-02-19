@@ -11019,3 +11019,4 @@ JS;
 }
 
 
+require_once get_stylesheet_directory() . '/inc/stock-rules.php';
