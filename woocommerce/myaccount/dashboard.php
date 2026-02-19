@@ -29,7 +29,6 @@ $allowed_html = array(
 ?>
 
 <p>
-<h1>test</h1>
 	<?php
 	printf(
 		/* translators: 1: user display name 2: logout url */
