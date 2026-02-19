@@ -4,7 +4,7 @@
  * Clean version - stock rules handled by plugin
  * 
  * @package Bride-co-child
- * @version 2.0.0
+ * @version 8.6.0
  */
 
 get_header('shop'); 
