@@ -22,6 +22,11 @@ background-position: center left;
     background-size: contain;
       }
 
+      	.custom-hero .square-image, .bride-inspo .square-image {
+			width: 40%;
+			height: 100%;
+		}
+
       .custom-hero .text-content,.carousel-container {
         width: 50%;
         padding-left:0;
@@ -113,7 +118,7 @@ background-position: center left;
         }
         
 		.custom-hero .square-image, .bride-inspo .square-image {
-			width: 40%!important;
+			width: 100%;
 			height: 100%;
 		}
 		.parallax {
