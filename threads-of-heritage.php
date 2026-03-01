@@ -113,7 +113,7 @@ background-position: center left;
         }
         
 		.custom-hero .square-image, .bride-inspo .square-image {
-			width: 40%;
+			width: 40%!important;
 			height: 100%;
 		}
 		.parallax {
