@@ -14,7 +14,7 @@
       }
 
       .threads-hero-img{
-        background-image: url('/wp-content/uploads/2026/03/Landing-Page-image-1080x1350-1.jpg');
+        background-image: url('https://brideandco.co.za/wp-content/uploads/2026/03/Landing-Page-image-1080x1350-1.jpg');
           min-height: 500px;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -153,10 +153,13 @@
          Designed as a meaningful and elevated experience, our expert alteration team, thoughfully integrates these cultural<br> elements into your chosen gown, whether through subtle detailing or bold statement features, ensuring<br> seamless craftsmanship and a flawless fit. 
          The results is more than a dress, it is a personal expression of<br> heritage, inclusivity, and individuality, where contemporary sophisticatio meets cultural pride in a gown that<br> is uniquely and beautifully yours. 
         </p>
-        <a class="shop-button" href="/book-your-free-fitting">Book a fitting</a>
+        <div class="d-inline-flex">
+         <a class="shop-button" href="/book-your-free-fitting">Book a fitting</a>
         <a class="shop-button" href="#signup-form">Download Knowledge Book</a>
         <a class="shop-button" href="#signup-form">Download Lookbook</a>
-        <a class="shop-button" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>
+        <a class="shop-button" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>  
+</div>
+    
       </div>
      
     </section>
