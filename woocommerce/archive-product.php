@@ -234,6 +234,7 @@ h5.mt-3.fw-bold {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 1px;
+    width:50px;
 }
 
 /* === SPECIAL VALUE BADGE === */
