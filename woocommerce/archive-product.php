@@ -4,7 +4,7 @@
  * Clean version - stock rules handled by plugin
  * 
  * @package Bride-co-child
- * @version 8.6.0
+ * @version 8.7.0
  */
 
 get_header('shop'); 
@@ -20,18 +20,8 @@ if (is_product_category()) {
     $current_category_slug = $current_category->slug;
     $current_category_name = $current_category->name;
     
-    // Check if we're in the bridal category or a child of bridal
+    // Check if we're in the bridal category (direct only, not child categories)
     $is_bridal_category = ($current_category_slug === 'bridal');
-    if (!$is_bridal_category) {
-        $ancestors = get_ancestors($current_category->term_id, 'product_cat');
-        foreach ($ancestors as $ancestor_id) {
-            $ancestor = get_term($ancestor_id, 'product_cat');
-            if ($ancestor && $ancestor->slug === 'bridal') {
-                $is_bridal_category = true;
-                break;
-            }
-        }
-    }
 }
 
 // Determine hide settings for Eurosuit
@@ -209,7 +199,8 @@ h5.mt-3.fw-bold {
     display: contents;
 }
 
-/* === THREADS OF HERITAGE CALLOUT === */.threads-callout {
+/* === THREADS OF HERITAGE CALLOUT === */
+.threads-callout {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -243,6 +234,21 @@ h5.mt-3.fw-bold {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 1px;
+}
+
+/* === SPECIAL VALUE BADGE === */
+.label.special-value-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    background: #c1272d;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .discount-box {
@@ -806,9 +812,12 @@ h5.mt-3.fw-bold {
                     $is_eurosuite = function_exists('is_eurosuit_page') ? is_eurosuit_page() : false;
                     $newlabel_style = $is_eurosuite ? 'new-badge-euro' : '';
                     
-                    // Check if this product is in the bridal category
+                    // Special Value badge - check for 'special-value' product tag
+                    $has_special_value = has_term('special-value', 'product_tag', $product_id);
+                    
+                    // Threads of Heritage - bridal category only (direct match, not child categories)
                     $show_threads = false;
-                    if ($is_bridal_category) {
+                    if ($current_category_slug === 'bridal') {
                         $show_threads = true;
                     } else {
                         $product_cats = get_the_terms($product_id, 'product_cat');
@@ -817,14 +826,6 @@ h5.mt-3.fw-bold {
                                 if ($cat->slug === 'bridal') {
                                     $show_threads = true;
                                     break;
-                                }
-                                $cat_ancestors = get_ancestors($cat->term_id, 'product_cat');
-                                foreach ($cat_ancestors as $anc_id) {
-                                    $anc = get_term($anc_id, 'product_cat');
-                                    if ($anc && $anc->slug === 'bridal') {
-                                        $show_threads = true;
-                                        break 2;
-                                    }
                                 }
                             }
                         }
@@ -837,6 +838,10 @@ h5.mt-3.fw-bold {
                                 <div class="image-container">
                                     <?php if ($is_new) : ?>
                                         <span class="label new-label <?php echo $newlabel_style; ?>">NEW</span>
+                                    <?php endif; ?>
+                                    
+                                    <?php if ($has_special_value) : ?>
+                                        <span class="label special-value-label">Special Value</span>
                                     <?php endif; ?>
                                     
                                     <?php if (has_post_thumbnail()) : ?>
@@ -881,12 +886,12 @@ h5.mt-3.fw-bold {
                                     <?php echo $product->get_price_html(); ?>
                                 </p>
                                 
-                              <?php if ($show_threads) : ?>
-    <div class="threads-callout">
-        <img src="<?php echo esc_url($threads_icon_url); ?>" alt="Threads of Heritage" class="threads-callout-icon">
-        <span class="threads-callout-text">Threads of Heritage available</span>
-    </div>
-<?php endif; ?>
+                                <?php if ($show_threads) : ?>
+                                <div class="threads-callout">
+                                    <img src="<?php echo esc_url($threads_icon_url); ?>" alt="Threads of Heritage" class="threads-callout-icon">
+                                    <span class="threads-callout-text">Threads of Heritage available</span>
+                                </div>
+                                <?php endif; ?>
                             </div>
                         </a>
                     </div>
