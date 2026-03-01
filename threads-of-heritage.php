@@ -82,11 +82,7 @@ background-position: center left;
         background-color: #b0b0b0;
       }
 
-      .custom-hero .square-image,.bride-inspo .square-image{
-        width: 50%;
-        height: 100%;
-      }
-
+   
       .custom-hero .square-image img {
         width: 100%;
         height: 100%;
