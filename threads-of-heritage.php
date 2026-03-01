@@ -17,15 +17,17 @@
         background-image: url('https://brideandco.co.za/wp-content/uploads/2026/03/Landing-Page-image-1080x1350-1.jpg');
           min-height: 500px;
   /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+background-position: center left;
+    background-repeat: no-repeat;
+    background-size: contain;
       }
 
       .custom-hero .text-content,.carousel-container {
         width: 50%;
-        padding: 80px;
+        padding-left:0;
+        padding-right:80px;
+        padding-top:80px;
+        padding-bottom:80px;
         background-color: #f9f4ee; /* Updated background color */
         display: flex;
         flex-direction: column;
@@ -111,7 +113,7 @@
         }
         
 		.custom-hero .square-image, .bride-inspo .square-image {
-			width: 100%;
+			width: 40%;
 			height: 100%;
 		}
 		.parallax {
@@ -146,12 +148,12 @@
         <h1>THREADS OF HERITAGE</h1>
         
         <p>
-         At Bride & Co, our Threads of Heritage service is rooted in inclusivity, ensuring that every bride feels seen,<br> celebrated, and authentically represented. Brides can select any gown, from 
-         Bride & Co stores and personalise<br> it with a heritage pattern, that reflects thier culture, blending the richness of South African fabric, beadwork,<br> colour, and adornment with modern bridal elegance.
+         At Bride & Co, our Threads of Heritage service is rooted in inclusivity, ensuring that every bride feels seen, celebrated, and authentically represented. Brides can select any gown, from 
+         Bride & Co stores and personalise it with a heritage pattern, that reflects thier culture, blending the richness of South African fabric, beadwork, colour, and adornment with modern bridal elegance.
         </p>
         <p>
-         Designed as a meaningful and elevated experience, our expert alteration team, thoughfully integrates these cultural<br> elements into your chosen gown, whether through subtle detailing or bold statement features, ensuring<br> seamless craftsmanship and a flawless fit. 
-         The results is more than a dress, it is a personal expression of<br> heritage, inclusivity, and individuality, where contemporary sophisticatio meets cultural pride in a gown that<br> is uniquely and beautifully yours. 
+         Designed as a meaningful and elevated experience, our expert alteration team, thoughfully integrates these cultural elements into your chosen gown, whether through subtle detailing or bold statement features, ensuring seamless craftsmanship and a flawless fit. 
+         The results is more than a dress, it is a personal expression of heritage, inclusivity, and individuality, where contemporary sophisticatio meets cultural pride in a gown that is uniquely and beautifully yours. 
         </p>
         <div class="d-inline-flex">
          <a class="shop-button" href="/book-your-free-fitting">Book a fitting</a>
