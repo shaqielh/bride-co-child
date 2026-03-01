@@ -93,6 +93,9 @@ background-position: center left;
 .custom-hero .text-content, .carousel-container{
 padding-left:80px;
 }
+.shop-button{
+    margin-right: 20px;
+}
 }
 
       /* Responsive */
