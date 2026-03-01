@@ -103,6 +103,7 @@ padding-left:80px;
         .custom-hero {
           flex-direction: column;
           height: auto;
+          height:auto;
         }
 
         .custom-hero .text-content,
@@ -162,12 +163,16 @@ padding-left:80px;
          Designed as a meaningful and elevated experience, our expert alteration team, thoughfully integrates these cultural elements into your chosen gown, whether through subtle detailing or bold statement features, ensuring seamless craftsmanship and a flawless fit. 
          The results is more than a dress, it is a personal expression of heritage, inclusivity, and individuality, where contemporary sophisticatio meets cultural pride in a gown that is uniquely and beautifully yours. 
         </p>
-        <div class="d-inline-flex justify-content-between">
+        <div class="d-none d-md-inline-flex justify-content-between">
          <a class="shop-button" href="/book-your-free-fitting">Book a fitting</a>
         <a class="shop-button" href="#signup-form">Download Knowledge Book</a>
         <a class="shop-button" href="#signup-form">Download Lookbook</a>
         <a class="shop-button" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>  
 </div>
+ <a class="shop-button d-md-none" href="/book-your-free-fitting">Book a fitting</a>
+        <a class="shop-button d-md-none" href="#signup-form">Download Knowledge Book</a>
+        <a class="shop-button d-md-none" href="#signup-form">Download Lookbook</a>
+        <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>  
     
       </div>
      
