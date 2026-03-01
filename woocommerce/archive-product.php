@@ -219,8 +219,8 @@ h5.mt-3.fw-bold {
 }
 
 .threads-callout-icon {
-    width: 18px;
-    height: 18px;
+    width: 30px;
+    height: 30px;
     flex-shrink: 0;
 }
 
@@ -530,7 +530,7 @@ h5.mt-3.fw-bold {
     }
     
     .threads-callout-icon {
-        width: 18px;
+        width: 30px;
         height: 18px;
     }
     
