@@ -211,39 +211,25 @@ h5.mt-3.fw-bold {
 
 /* === THREADS OF HERITAGE CALLOUT === */
 .threads-callout {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 10px;
-    margin-top: 8px;
-    background-color: #faf6f1;
-    border: 1px solid #e8ddd1;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.threads-callout:hover {
-    background-color: #f3ebe0;
-    border-color: #d9c4b3;
+    gap: 5px;
+    padding: 4px 5px;
+    margin-top: 4px;
 }
 
 .threads-callout-icon {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
+    opacity: 0.7;
 }
 
 .threads-callout-text {
     font-family: "Poppins", sans-serif;
     font-size: 11px;
-    color: #5a5a5a;
-    line-height: 1.3;
-}
-
-.threads-callout-text strong {
-    color: #333;
-    font-weight: 600;
+    color: #999;
+    font-weight: 400;
 }
 
 /* === LABELS === */
@@ -896,12 +882,12 @@ h5.mt-3.fw-bold {
                                     <?php echo $product->get_price_html(); ?>
                                 </p>
                                 
-                                <?php if ($show_threads) : ?>
-                                    <div class="threads-callout">
-                                        <img src="<?php echo esc_url($threads_icon_url); ?>" alt="Threads of Heritage" class="threads-callout-icon">
-                                        <span class="threads-callout-text"><strong>Threads of Heritage</strong> — Customise this gown with our bespoke alteration service</span>
-                                    </div>
-                                <?php endif; ?>
+                              <?php if ($show_threads) : ?>
+    <div class="threads-callout">
+        <img src="<?php echo esc_url($threads_icon_url); ?>" alt="Threads of Heritage" class="threads-callout-icon">
+        <span class="threads-callout-text">Threads of Heritage available</span>
+    </div>
+<?php endif; ?>
                             </div>
                         </a>
                     </div>
