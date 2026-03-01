@@ -693,19 +693,32 @@ get_header(); ?>
       setInterval(() => moveSlide(1), 3000); // Auto-rotate every 3 seconds
     </script>
 
-
+<section class="container-fluid my-5 px-0">
+  <div class="evening-banner">
+    <div class="banner-content">
+      <div class="banner-text text-left align-middle" style="text-align: center; padding: 40px;">
+        <h2 class="banner-title">WHITE</h2>
+        <p class="banner-subtitle">Wedding Dresses</p>
+        <a href="https://brideandco.co.za/product-category/bridal/?filter_colour=white" class="banner-button">SHOP NOW</a>
+      </div>
+      <div class="banner-image" style="background-image: url(https://qwerty-test.co.za/wp-content/uploads/2025/11/White-wedding-dress.jpg);">
+        <!-- The image is loaded as the background -->
+      </div>
+    </div>
+  </div>
+</section>
 <!-- Category Section -->
 <section class="container my-5">
 <h2 class="mb-4 fw-bold">Eveningwear</h2>
       <div class="row g-4">
         <!-- First Card (Matric Dance) -->
         <div class="col-md-3">
-          <a href="https://stage.brideandco.co.za/product-category/special-occasions/matric-dance/" class="text-decoration-none">
+          <a href="/product-category/special-occasions/matric-dance/" class="text-decoration-none">
             <!-- Link to another page -->
             <div class="category-card card-matric">
               <div class="category-content">
                 <h2 class="category-title">A STYLISH<br>FAREWELL<br>Matric Dance</h2>
-                <a href="https://stage.brideandco.co.za/product-category/special-occasions/matric-dance/" class="shop-button">View here</a>
+                <a href="/product-category/special-occasions/matric-dance/" class="shop-button">View here</a>
               </div>
             </div>
           </a>
@@ -713,11 +726,11 @@ get_header(); ?>
 
         <!-- Second Card (Evening Gowns) -->
         <div class="col-md-3">
-          <a href="https://stage.brideandco.co.za/product-category/special-occasions/" class="text-decoration-none">
+          <a href="/product-category/special-occasions/" class="text-decoration-none">
             <div class="category-card card-evening">
               <div class="category-content">
                 <h2 class="category-title">SHOP<br>BREATHTAKING<br> Evening Gowns</h2>
-                <a href="https://stage.brideandco.co.za/product-category/special-occasions/" class="shop-button">View here</a>
+                <a href="/product-category/special-occasions/" class="shop-button">View here</a>
               </div>
             </div>
           </a>
@@ -725,11 +738,11 @@ get_header(); ?>
 
         <!-- Third Card (Bride / Groom) -->
         <div class="col-md-3">
-          <a href="https://stage.brideandco.co.za/product-category/mother-of-the-bride-groom/" class="text-decoration-none">
+          <a href="/product-category/mother-of-the-bride-groom/" class="text-decoration-none">
             <div class="category-card card-bride">
               <div class="category-content">
                 <h2 class="category-title">MOM OF THE <br> Bride / Groom</h2>
-                <a href="https://stage.brideandco.co.za/product-category/mother-of-the-bride-groom/" class="shop-button">View here</a>
+                <a href="/product-category/mother-of-the-bride-groom/" class="shop-button">View here</a>
               </div>
             </div>
           </a>
@@ -737,11 +750,11 @@ get_header(); ?>
 
         <!-- Fourth Card (New Arrivals) -->
         <div class="col-md-3">
-          <a href="https://stage.brideandco.co.za/product-category/new-arrivals/" class="text-decoration-none">
+          <a href="/product-category/new-arrivals/" class="text-decoration-none">
             <div class="category-card card-new-arrivals">
               <div class="category-content">
                 <h2 class="category-title">THIS SEASON'S <br>New Arrivals</h2>
-                <a href="https://stage.brideandco.co.za/product-category/new-arrivals/" class="shop-button">View here</a>
+                <a href="/product-category/new-arrivals/" class="shop-button">View here</a>
               </div>
             </div>
           </a>
