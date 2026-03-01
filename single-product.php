@@ -907,6 +907,7 @@ document.addEventListener('keydown', function(event) {
         <div class="product-info">
             <?php if ($brand) : ?>
             <div class="brand-name"><?php echo esc_html($brand); ?></div>
+            Test
             <?php endif; ?>
             
             <?php if (!empty($tech_spec)) : ?>
