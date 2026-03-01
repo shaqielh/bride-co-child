@@ -89,8 +89,11 @@ background-position: center left;
         object-fit: cover;
         display: block;
       }
-      
-
+@media screen and (max-width: 1440px) {
+.custom-hero .text-content, .carousel-container{
+padding-left:80px;
+}
+}
 
       /* Responsive */
       @media screen and (max-width: 768px) {
