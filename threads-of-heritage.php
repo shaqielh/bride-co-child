@@ -143,7 +143,42 @@ padding-left:80px;
 		height: 100vh;
 }
 }
+@media screen and (max-width: 1024px) {
+  .custom-hero {
+    flex-direction: column;
+    height: auto;
+  }
 
+  .custom-hero .square-image,
+  .bride-inspo .square-image {
+    width: 100%;
+    height: 400px;
+  }
+
+  .custom-hero .text-content,
+  .carousel-container {
+    width: 100%;
+    padding: 40px 30px;
+  }
+
+  .custom-hero .text-content h1 {
+    font-size: 32px;
+  }
+
+  .custom-hero .text-content h2 {
+    font-size: 16px;
+  }
+
+  .custom-hero .text-content p {
+    font-size: 14px;
+  }
+
+  .threads-hero-img {
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+  }
+}
     </style>
 
     <!-- Welcome Section -->
