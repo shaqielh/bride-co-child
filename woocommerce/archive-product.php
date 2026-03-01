@@ -209,20 +209,19 @@ h5.mt-3.fw-bold {
     display: contents;
 }
 
-/* === THREADS OF HERITAGE CALLOUT === */
-.threads-callout {
-    display: inline-flex;
+/* === THREADS OF HERITAGE CALLOUT === */.threads-callout {
+    display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 4px 5px;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 5px;
     margin-top: 4px;
 }
 
 .threads-callout-icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
-    opacity: 0.7;
 }
 
 .threads-callout-text {
