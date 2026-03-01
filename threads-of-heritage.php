@@ -102,8 +102,7 @@ padding-left:80px;
       @media screen and (max-width: 768px) {
         .custom-hero {
           flex-direction: column;
-          height: auto;
-          height:auto;
+          height: auto!important;
         }
 
         .custom-hero .text-content,
