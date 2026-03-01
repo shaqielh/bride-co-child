@@ -298,6 +298,21 @@ get_header(); ?>
 <?php bride_co_render_featured_products(); ?>
 <?php echo do_shortcode('[wedding_dresses_archive]'); ?>
 <?php bride_co_render_silhouette(); ?>
+<section class="container-fluid my-5 px-0">
+  <div class="evening-banner">
+    <div class="banner-content">
+      <div class="banner-text text-left align-middle" style="text-align: center; padding: 40px;">
+        <h2 class="banner-title">THREADS OF HERITAGE</h2>
+        <p class="banner-subtitle">Wedding Dresses</p>
+        <a href="/threads-of-heritage/" class="banner-button">LEARN MORE</a>
+      </div>
+      <div class="banner-image" style="background-image: url('https://brideandco.co.za/wp-content/uploads/2026/03/Threads-of-heritage-Homepage-Visual.jpg');">
+        <!-- The image is loaded as the background -->
+      </div>
+    </div>
+  </div>
+</section>
+
 <?php bride_co_render_appointment(); ?>
 
 
@@ -693,20 +708,7 @@ get_header(); ?>
       setInterval(() => moveSlide(1), 3000); // Auto-rotate every 3 seconds
     </script>
 
-<section class="container-fluid my-5 px-0">
-  <div class="evening-banner">
-    <div class="banner-content">
-      <div class="banner-text text-left align-middle" style="text-align: center; padding: 40px;">
-        <h2 class="banner-title">THREADS OF HERITAGE</h2>
-        <p class="banner-subtitle">Wedding Dresses</p>
-        <a href="/threads-of-heritage/" class="banner-button">LEARN MORE</a>
-      </div>
-      <div class="banner-image" style="background-image: url('https://brideandco.co.za/wp-content/uploads/2026/03/Threads-of-heritage-Homepage-Visual.jpg');">
-        <!-- The image is loaded as the background -->
-      </div>
-    </div>
-  </div>
-</section>
+
 <!-- Category Section -->
 <section class="container my-5">
 <h2 class="mb-4 fw-bold">Eveningwear</h2>
