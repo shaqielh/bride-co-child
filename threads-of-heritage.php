@@ -152,7 +152,8 @@ padding-left:80px;
   .custom-hero .square-image,
   .bride-inspo .square-image {
     width: 100%;
-    height: 400px;
+    height: 500px;
+    background-position: top;
   }
 
   .custom-hero .text-content,
