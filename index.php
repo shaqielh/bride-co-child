@@ -697,11 +697,11 @@ get_header(); ?>
   <div class="evening-banner">
     <div class="banner-content">
       <div class="banner-text text-left align-middle" style="text-align: center; padding: 40px;">
-        <h2 class="banner-title">WHITE</h2>
+        <h2 class="banner-title">THREADS OF HERITAGE</h2>
         <p class="banner-subtitle">Wedding Dresses</p>
-        <a href="https://brideandco.co.za/product-category/bridal/?filter_colour=white" class="banner-button">SHOP NOW</a>
+        <a href="/threads-of-heritage/" class="banner-button">LEARN MORE</a>
       </div>
-      <div class="banner-image" style="background-image: url(https://qwerty-test.co.za/wp-content/uploads/2025/11/White-wedding-dress.jpg);">
+      <div class="banner-image" style="background-image: url('https://brideandco.co.za/wp-content/uploads/2026/03/Threads-of-heritage-Homepage-Visual.jpg');">
         <!-- The image is loaded as the background -->
       </div>
     </div>
