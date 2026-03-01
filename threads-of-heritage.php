@@ -200,13 +200,13 @@ padding-left:80px;
         </p>
         <div class="d-none d-md-inline-flex justify-content-between">
          <a class="shop-button" href="/book-your-free-fitting">Book a fitting</a>
-        <a class="shop-button" href="#signup-form">Download Knowledge Book</a>
-        <a class="shop-button" href="#signup-form">Download Lookbook</a>
+        <a class="shop-button" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Knowledge Book</a>
+        <a class="shop-button" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Lookbook</a>
         <a class="shop-button" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>  
 </div>
  <a class="shop-button d-md-none" href="/book-your-free-fitting">Book a fitting</a>
-        <a class="shop-button d-md-none" href="#signup-form">Download Knowledge Book</a>
-        <a class="shop-button d-md-none" href="#signup-form">Download Lookbook</a>
+        <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Knowledge Book</a>
+        <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Lookbook</a>
         <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>  
     
       </div>
