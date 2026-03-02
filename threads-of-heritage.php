@@ -198,17 +198,17 @@ padding-left:80px;
          Designed as a meaningful and elevated experience, our expert alteration team, thoughfully integrates these cultural elements into your chosen gown, whether through subtle detailing or bold statement features, ensuring seamless craftsmanship and a flawless fit. 
          The results is more than a dress, it is a personal expression of heritage, inclusivity, and individuality, where contemporary sophisticatio meets cultural pride in a gown that is uniquely and beautifully yours. 
         </p>
-        <div class="d-none d-md-inline-flex justify-content-between">
-         <a class="shop-button" href="/book-your-free-fitting">Book a fitting</a>
-        <a class="shop-button" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Knowledge Book</a>
-        <a class="shop-button" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Lookbook</a>
-        <a class="shop-button" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>  
+     <div class="d-none d-md-inline-flex justify-content-between">
+    <a class="shop-button" href="/book-your-free-fitting" target="_blank" rel="noopener noreferrer">Book a fitting</a>
+    <a class="shop-button" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf" target="_blank" rel="noopener noreferrer">Download Knowledge Book</a>
+    <a class="shop-button" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf" target="_blank" rel="noopener noreferrer">Download Lookbook</a>
+    <a class="shop-button" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf" target="_blank" rel="noopener noreferrer">Pricelist</a>  
 </div>
- <a class="shop-button d-md-none" href="/book-your-free-fitting">Book a fitting</a>
-        <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Knowledge Book</a>
-        <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf">Download Lookbook</a>
-        <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf">Pricelist</a>  
-    
+
+<a class="shop-button d-md-none" href="/book-your-free-fitting" target="_blank" rel="noopener noreferrer">Book a fitting</a>
+<a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf" target="_blank" rel="noopener noreferrer">Download Knowledge Book</a>
+<a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf" target="_blank" rel="noopener noreferrer">Download Lookbook</a>
+<a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf" target="_blank" rel="noopener noreferrer">Pricelist</a>
       </div>
      
     </section>
