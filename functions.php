@@ -3914,7 +3914,6 @@ function bride_co_render_appointment() {
 
 // Add this code to your home page template (front-page.php or home.php):
 // <?php bride_co_render_appointment();
-
 /**
  * Evening Dresses of the Week Shortcode - Displays actual WooCommerce products
  * Usage: [evening_dresses_archive]
@@ -4126,8 +4125,7 @@ function evening_dresses_get_price_block_html( WC_Product $product ) {
 
     // Fallback for grouped/external
     return $product->get_price_html();
-} 
-
+}
 
 /**
  * Silhouette Carousel Section for Home Page
