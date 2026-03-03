@@ -761,6 +761,7 @@ p {
   padding: 5px 10px;
   border-radius: 3px;
   z-index: 2;
+  width:20%;
 }
 
 .new-label {
