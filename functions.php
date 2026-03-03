@@ -6497,9 +6497,7 @@ function hide_new_labels_for_old_products() {
         ?>
         <script>
         jQuery(document).ready(function($) {
-            // Add CSS to hide all NEW labels initially
-            $('head').append('<style id="new-label-controller">.new-label, .new-badge { display: block; position: absolute; z-index: 1; background: #ddcdbf; padding: 8px 15px;  font-weight: 600; }</style>');
-            
+           
             // Function to show NEW labels only on recent products
             function processNewLabels() {
                 // Get all product elements
