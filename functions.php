@@ -3914,13 +3914,16 @@ function bride_co_render_appointment() {
 
 // Add this code to your home page template (front-page.php or home.php):
 // <?php bride_co_render_appointment();
-
 /**
  * Evening Dresses of the Week Shortcode - Displays actual WooCommerce products
  * Usage: [evening_dresses_archive]
  */
 function evening_dresses_archive_shortcode() {
     ob_start();
+
+    // Threads of Heritage icon
+    $threads_icon_url = 'https://brideandco.co.za/wp-content/uploads/2026/03/threads-icon.svg';
+    $threads_page_url = home_url('/threads-of-heritage/');
 
     $args = array(
         'post_type'      => 'product',
@@ -3963,12 +3966,23 @@ function evening_dresses_archive_shortcode() {
 
                     $product_id = $product->get_id();
 
+                    // ----- PRICING (same as archive) -----
+                    $regular_price = wc_get_price_to_display($product, array('price' => $product->get_regular_price()));
+                    $is_on_sale = $product->is_on_sale();
+                    $discount_percentage = 0;
+
+                    if ($is_on_sale && $regular_price > 0) {
+                        $sale_price = wc_get_price_to_display($product, array('price' => $product->get_sale_price()));
+                        $discount_percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
+                    }
+
                     // ----- IMAGES -----
                     $attachment_ids = $product->get_gallery_image_ids();
                     $hover_image    = !empty($attachment_ids) ? wp_get_attachment_image_url($attachment_ids[0], 'large') : '';
 
                     // ----- TITLE / BRAND -----
                     $brand = get_the_title();
+                    $product_description = get_the_content();
 
                     $dress_name = '';
                     $tech_spec_terms = get_the_terms($product_id, 'pa_technical-spec');
@@ -3992,8 +4006,20 @@ function evening_dresses_archive_shortcode() {
                     $is_eurosuite = function_exists('is_eurosuit_page') ? is_eurosuit_page($product_id) : false;
                     $newlabel_style = $is_eurosuite ? 'new-badge-euro' : '';
 
-                    // ----- PRICING -----
-                    $price_html = evening_dresses_get_price_block_html($product);
+                    // ----- SPECIAL VALUE BADGE (same as archive) -----
+                    $has_special_value = has_term('special-value', 'product_tag', $product_id);
+
+                    // ----- THREADS OF HERITAGE (check if product is in bridal category) -----
+                    $show_threads = false;
+                    $product_cats = get_the_terms($product_id, 'product_cat');
+                    if (!empty($product_cats) && !is_wp_error($product_cats)) {
+                        foreach ($product_cats as $cat) {
+                            if ($cat->slug === 'bridal') {
+                                $show_threads = true;
+                                break;
+                            }
+                        }
+                    }
                     ?>
                     <div class="col-md-3">
                         <a href="<?php echo esc_url(get_permalink()); ?>" class="product-card-link">
@@ -4001,6 +4027,10 @@ function evening_dresses_archive_shortcode() {
                                 <div class="image-container">
                                     <?php if ($is_new): ?>
                                         <span class="label new-label <?php echo esc_attr($newlabel_style); ?>">NEW</span>
+                                    <?php endif; ?>
+
+                                    <?php if ($has_special_value) : ?>
+                                        <span class="label special-value-label">Special Value</span>
                                     <?php endif; ?>
 
                                     <?php if (has_post_thumbnail()) : ?>
@@ -4011,6 +4041,8 @@ function evening_dresses_archive_shortcode() {
 
                                     <?php if ($hover_image) : ?>
                                         <img src="<?php echo esc_url($hover_image); ?>" class="hover-image" alt="<?php echo esc_attr($brand); ?> Hover" />
+                                    <?php elseif (has_post_thumbnail()) : ?>
+                                        <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" class="hover-image" alt="<?php echo esc_attr($brand); ?> Hover" />
                                     <?php endif; ?>
 
                                     <span class="add-to-cart-btn">SHOP NOW</span>
@@ -4023,16 +4055,29 @@ function evening_dresses_archive_shortcode() {
                                     <h5 class="mt-3 fw-bold"><?php echo esc_html($brand); ?></h5>
                                 <?php endif; ?>
 
-                                <p class="product-description"><?php echo wp_trim_words($product->get_short_description(), 10, '...'); ?></p>
+                                <?php if (!empty($product_description)) : ?>
+                                    <p class="product-description"><?php echo wp_trim_words($product_description, 15); ?></p>
+                                <?php endif; ?>
+
+                                <?php if ($is_on_sale && $discount_percentage > 0) : ?>
+                                    <span class="discount-box"><?php echo esc_html($discount_percentage); ?>%</span>
+                                <?php endif; ?>
 
                                 <?php if (!empty($product_brand)) : ?>
                                     <p class="product-brand"><?php echo esc_html($product_brand); ?></p>
                                 <?php endif; ?>
 
-                                <!-- Pricing -->
+                                <!-- Pricing (using WooCommerce default like archive) -->
                                 <p class="product-pricing">
-                                    <?php echo $price_html; ?>
+                                    <?php echo $product->get_price_html(); ?>
                                 </p>
+
+                                <?php if ($show_threads) : ?>
+                                <div class="threads-callout">
+                                    <img src="<?php echo esc_url($threads_icon_url); ?>" alt="Threads of Heritage" class="threads-callout-icon">
+                                    <span class="threads-callout-text">Threads of Heritage available</span>
+                                </div>
+                                <?php endif; ?>
                             </div>
                         </a>
                     </div>
@@ -4041,24 +4086,67 @@ function evening_dresses_archive_shortcode() {
         </section>
 
         <style>
-            /* --- INLINE PRICE STYLING --- */
-            .product-pricing .sale-price {
-                color: #c1272d !important; /* deep red for sale */
-                font-weight: 700;
-                margin-right: 6px;
+            /* --- PRICE STYLING (matching archive) --- */
+            .product-pricing ins {
+                color: #c1272d !important;
+                font-weight: 700 !important;
+                text-decoration: none !important;
             }
-            .product-pricing .old-price {
-                color: #777;
+            .product-pricing del {
+                color: #777 !important;
+                opacity: 0.8;
                 text-decoration: line-through;
+                margin-left: 5px;
+            }
+            /* --- SPECIAL VALUE BADGE --- */
+            .label.special-value-label {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 2;
+                background: #c1272d;
+                color: #fff;
+                padding: 4px 10px;
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+            }
+            /* --- DISCOUNT BOX --- */
+            .discount-box {
+                display: inline-block;
+                background: #c1272d;
+                color: #fff;
+                padding: 2px 8px;
+                font-size: 12px;
+                font-weight: 600;
+                border-radius: 3px;
+                margin: 4px 5px;
+            }
+            /* --- THREADS OF HERITAGE CALLOUT --- */
+            .threads-callout {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                padding: 6px 5px;
+                margin-top: 4px;
+            }
+            .threads-callout-icon {
+                width: 30px;
+                height: 30px;
+                flex-shrink: 0;
+            }
+            .threads-callout-text {
+                font-family: "Poppins", sans-serif;
+                font-size: 11px;
+                color: #999;
                 font-weight: 400;
             }
-            .product-pricing .regular-price {
-                font-weight: 600;
-                color: #222;
-            }
-            .product-pricing .price-prefix {
-                margin-right: 4px;
-                opacity: 0.8;
+            @media (max-width: 767px) {
+                .threads-callout { padding: 6px 8px; gap: 6px; }
+                .threads-callout-icon { width: 20px !important; height: 18px; }
+                .threads-callout-text { font-size: 10px; }
             }
         </style>
     <?php endif;
@@ -4067,67 +4155,6 @@ function evening_dresses_archive_shortcode() {
     return ob_get_clean();
 }
 add_shortcode('evening_dresses_archive', 'evening_dresses_archive_shortcode');
-
-
-/**
- * Robust Price Display Helper (handles simple + variable + on sale)
- */
-function evening_dresses_get_price_block_html( WC_Product $product ) {
-    $type = $product->get_type();
-
-    $wrap_old_new = function( $sale, $regular, $prefix = '' ) {
-        $out  = '';
-        if ($prefix !== '') {
-            $out .= '<span class="price-prefix">'.esc_html($prefix).' </span>';
-        }
-                $out .= ' <span class="old-price">' . wc_price( $regular ) . '</span>';
-
-        $out .= '<span class="sale-price">' . wc_price( $sale ) . '</span>';
-        return $out;
-    };
-
-    // SIMPLE PRODUCTS
-    if ( $type === 'simple' ) {
-        $reg_raw  = (float) $product->get_regular_price();
-        $sale_raw = (float) $product->get_sale_price();
-
-        $reg_disp  = wc_get_price_to_display( $product, array( 'price' => $reg_raw ) );
-        $sale_disp = ($sale_raw > 0) ? wc_get_price_to_display( $product, array( 'price' => $sale_raw ) ) : 0;
-
-        if ( $product->is_on_sale() && $sale_disp > 0 && $sale_disp < $reg_disp ) {
-            return $wrap_old_new( $sale_disp, $reg_disp );
-        }
-
-        $display = ($reg_disp > 0) ? $reg_disp : (float) $product->get_price();
-        return '<span class="regular-price">' . wc_price( $display ) . '</span>';
-    }
-
-    // VARIABLE PRODUCTS
-    if ( $type === 'variable' && $product instanceof WC_Product_Variable ) {
-        $reg_min_raw   = (float) $product->get_variation_regular_price( 'min', false );
-        $sale_min_raw  = (float) $product->get_variation_sale_price( 'min', false );
-        $price_min_raw = (float) $product->get_variation_price( 'min', false );
-
-        $reg_min_disp   = ($reg_min_raw  > 0) ? wc_get_price_to_display( $product, array( 'price' => $reg_min_raw  ) ) : 0;
-        $sale_min_disp  = ($sale_min_raw > 0) ? wc_get_price_to_display( $product, array( 'price' => $sale_min_raw ) ) : 0;
-        $price_min_disp = ($price_min_raw > 0) ? wc_get_price_to_display( $product, array( 'price' => $price_min_raw ) ) : 0;
-
-        if ( $product->is_on_sale() && $sale_min_disp > 0 && $reg_min_disp > 0 && $sale_min_disp < $reg_min_disp ) {
-            return $wrap_old_new( $sale_min_disp, $reg_min_disp, __( '', 'woocommerce' ) );
-        }
-
-        $base = $price_min_disp ?: $reg_min_disp;
-        if ( $base > 0 ) {
-            return '<span class="price-prefix">'.esc_html__( '', 'woocommerce' ).' </span><span class="regular-price">' . wc_price( $base ) . '</span>';
-        }
-
-        return $product->get_price_html();
-    }
-
-    // Fallback for grouped/external
-    return $product->get_price_html();
-}
-
 
 /**
  * Silhouette Carousel Section for Home Page
