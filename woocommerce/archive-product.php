@@ -537,7 +537,7 @@ h5.mt-3.fw-bold {
     }
     
     .threads-callout-icon {
-        width: 30px;
+        width: 20px!important;
         height: 18px;
     }
     
