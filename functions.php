@@ -4126,7 +4126,7 @@ function evening_dresses_get_price_block_html( WC_Product $product ) {
 
     // Fallback for grouped/external
     return $product->get_price_html();
-}
+} 
 
 
 /**
