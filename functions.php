@@ -11018,3 +11018,321 @@ JS;
 
 
 require_once get_stylesheet_directory() . '/inc/stock-rules.php';
+
+/**
+ * Booking System Notice Popup
+ * Shows everywhere EXCEPT:
+ * - The 'bridal' product category archive
+ * - Any child/descendant categories of 'bridal'
+ * - Any single product belonging to 'bridal' or its child categories
+ */
+function brideco_booking_notice_popup() {
+
+    $show_popup = true;
+
+    // 1) Exclude the bridal category and all its descendants
+    if ( function_exists('is_product_category') && is_product_category() ) {
+
+        $current_term = get_queried_object();
+
+        if ( $current_term && ! empty( $current_term->term_id ) ) {
+
+            $bridal_term = get_term_by( 'slug', 'bridal', 'product_cat' );
+
+            if ( $bridal_term && ! is_wp_error( $bridal_term ) ) {
+
+                // Get all descendant IDs of bridal
+                $child_ids   = get_term_children( $bridal_term->term_id, 'product_cat' );
+                $all_ids     = array_merge( array( $bridal_term->term_id ), $child_ids );
+
+                // Also walk up the ancestor chain of the current term
+                $ancestor_ids        = get_ancestors( (int) $current_term->term_id, 'product_cat' );
+                $terms_to_check      = array_merge( array( (int) $current_term->term_id ), array_map( 'intval', $ancestor_ids ) );
+
+                if ( ! empty( array_intersect( $terms_to_check, array_map( 'intval', $all_ids ) ) ) ) {
+                    $show_popup = false;
+                }
+            }
+        }
+    }
+
+    // 2) Exclude single products that belong to bridal or its child categories
+    if ( $show_popup && is_singular( 'product' ) ) {
+
+        $bridal_term = get_term_by( 'slug', 'bridal', 'product_cat' );
+
+        if ( $bridal_term && ! is_wp_error( $bridal_term ) ) {
+
+            $child_ids     = get_term_children( $bridal_term->term_id, 'product_cat' );
+            $all_ids       = array_map( 'intval', array_merge( array( $bridal_term->term_id ), $child_ids ) );
+            $product_terms = wp_get_post_terms( get_the_ID(), 'product_cat', array( 'fields' => 'ids' ) );
+
+            if ( ! empty( array_intersect( $all_ids, array_map( 'intval', $product_terms ) ) ) ) {
+                $show_popup = false;
+            }
+        }
+    }
+
+    if ( ! $show_popup ) return;
+
+    ?>
+    <!-- Booking Notice Popup -->
+    <div id="booking-notice-popup" class="bn-modal-overlay">
+        <div class="bn-popup-container">
+            <button class="bn-close-btn" type="button">&times;</button>
+
+            <div class="bn-content-wrapper">
+                <div class="bn-main-content">
+
+                    <div class="bn-icon">🛠️</div>
+
+                    <h1 class="bn-title">BOOKING NOTICE</h1>
+
+                    <p class="bn-body">We are currently experiencing technical difficulties with our booking system. Please find a store and make a booking telephonically or through WhatsApp.</p>
+
+                    <div class="bn-brand">
+                        <img
+                            src="https://brideandco.co.za/wp-content/uploads/2022/05/cropped-cropped-cropped-cropped-cropped-cropped-BrideCo-Logo.png"
+                            alt="Bride&Co Logo"
+                            class="bn-brand-logo"
+                        />
+                    </div>
+
+                    <a href="/find-a-store" class="bn-cta-btn">Find a Store</a>
+
+                    <button class="bn-dismiss-btn" type="button">Continue browsing</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .bn-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 999999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bn-popup-container {
+            position: relative;
+            max-width: 560px;
+            width: 90%;
+            background-color: #fff;
+            background-image: url("https://brideandco.co.za/wp-content/uploads/2022/10/Untitled-design-3.png");
+            background-size: cover;
+            background-position: center center;
+            color: white;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Dark overlay on top of bg image so text is readable */
+        .bn-popup-container::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+
+        .bn-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+            z-index: 10;
+            padding: 0;
+            line-height: 1;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .bn-close-btn:hover {
+            opacity: 1;
+        }
+
+        .bn-content-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 60px 40px 50px;
+            min-height: 420px;
+        }
+
+        .bn-main-content {
+            text-align: center;
+        }
+
+        .bn-icon {
+            font-size: 38px;
+            margin-bottom: 18px;
+        }
+
+        .bn-title {
+            font-family: Cinzel, serif;
+            font-size: 38px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            color: #fff;
+        }
+
+        .bn-body {
+            font-family: "Poppins", Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.75;
+            margin: 0 0 28px 0 !important;
+            color: rgba(255, 255, 255, 0.92);
+            letter-spacing: 0.3px;
+        }
+
+        .bn-brand {
+            margin: 0 0 28px 0;
+            text-align: center;
+        }
+
+        .bn-brand-logo {
+            height: 30px;
+            width: auto;
+            display: inline-block;
+            filter: brightness(0) invert(1);
+        }
+
+        .bn-cta-btn {
+            display: inline-block;
+            background: #ddcdbf;
+            color: #fff !important;
+            padding: 14px 38px;
+            text-decoration: none;
+            font-family: "Poppins", Arial, sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 16px;
+        }
+
+        .bn-cta-btn:hover {
+            background: #c8b5a3;
+            color: #fff !important;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .bn-dismiss-btn {
+            display: block;
+            margin: 0 auto;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.65);
+            font-family: "Poppins", Arial, sans-serif;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+            padding: 0;
+        }
+
+        .bn-dismiss-btn:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .bn-content-wrapper {
+                padding: 50px 28px 40px;
+                min-height: 380px;
+            }
+
+            .bn-title {
+                font-size: 28px;
+                letter-spacing: 4px;
+            }
+
+            .bn-body {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .bn-content-wrapper {
+                padding: 40px 22px 35px;
+                min-height: 340px;
+            }
+
+            .bn-title {
+                font-size: 22px;
+                letter-spacing: 3px;
+            }
+
+            .bn-body {
+                font-size: 13px;
+            }
+
+            .bn-cta-btn {
+                font-size: 12px;
+                padding: 12px 28px;
+            }
+        }
+    </style>
+
+    <script>
+        (function () {
+
+            function initBookingNoticePopup() {
+                var popup   = document.getElementById("booking-notice-popup");
+                var closeBtn     = document.querySelector(".bn-close-btn");
+                var dismissBtn   = document.querySelector(".bn-dismiss-btn");
+                if (!popup) return;
+
+                setTimeout(function () {
+                    popup.style.display = "flex";
+                }, 500);
+
+                function closePopup() {
+                    popup.style.display = "none";
+                }
+
+                if (closeBtn)    closeBtn.addEventListener("click", closePopup);
+                if (dismissBtn)  dismissBtn.addEventListener("click", closePopup);
+
+                popup.addEventListener("click", function (e) {
+                    if (e.target === popup) closePopup();
+                });
+
+                document.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape" || e.keyCode === 27) closePopup();
+                });
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initBookingNoticePopup);
+            } else {
+                initBookingNoticePopup();
+            }
+
+        })();
+    </script>
+    <?php
+}
+
+add_action('wp_footer', 'brideco_booking_notice_popup');
