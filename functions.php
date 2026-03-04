@@ -11335,3 +11335,326 @@ function brideco_booking_notice_popup() {
 }
 
 add_action('wp_footer', 'brideco_booking_notice_popup');
+
+/**
+ * Display BrideVibes popup on bridal category pages, children, and products
+ * Add this to your theme's functions.php file
+ */
+function bridevibes_popup() {
+
+    $show_popup = false;
+
+    // Show on the bridal product category
+    if (function_exists('is_product_category') && is_product_category()) {
+        $current_term = get_queried_object();
+
+        if ($current_term && !empty($current_term->term_id)) {
+            // Get the bridal term
+            $bridal_term = get_term_by('slug', 'bridal', 'product_cat');
+
+            if ($bridal_term && !is_wp_error($bridal_term)) {
+                $bridal_id = (int) $bridal_term->term_id;
+                $current_id = (int) $current_term->term_id;
+
+                // Check if current term IS bridal OR is a descendant of bridal
+                if ($current_id === $bridal_id) {
+                    $show_popup = true;
+                } else {
+                    $ancestor_ids = array_map('intval', get_ancestors($current_id, 'product_cat'));
+                    if (in_array($bridal_id, $ancestor_ids)) {
+                        $show_popup = true;
+                    }
+                }
+            }
+        }
+    }
+
+    // Show on single products within the bridal category tree
+    if (!$show_popup && function_exists('is_product') && is_product()) {
+        $bridal_term = get_term_by('slug', 'bridal', 'product_cat');
+
+        if ($bridal_term && !is_wp_error($bridal_term)) {
+            $bridal_id = (int) $bridal_term->term_id;
+            $product_terms = get_the_terms(get_the_ID(), 'product_cat');
+
+            if ($product_terms && !is_wp_error($product_terms)) {
+                foreach ($product_terms as $term) {
+                    $term_id = (int) $term->term_id;
+                    if ($term_id === $bridal_id) {
+                        $show_popup = true;
+                        break;
+                    }
+                    $ancestors = array_map('intval', get_ancestors($term_id, 'product_cat'));
+                    if (in_array($bridal_id, $ancestors)) {
+                        $show_popup = true;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (!$show_popup) {
+        return;
+    }
+    ?>
+    <!-- BrideVibes Popup -->
+    <div id="bridevibes-popup" class="bv-modal-overlay">
+      <div class="bv-popup-container">
+        <button class="bv-close-btn" type="button">&times;</button>
+
+        <div class="bv-left-panel">
+          <!-- Left side uses the background image (model photo side) -->
+        </div>
+
+        <div class="bv-right-panel">
+          <div class="bv-brand-header">
+            <img
+              src="https://brideandco.co.za/wp-content/uploads/2022/05/cropped-cropped-cropped-cropped-cropped-cropped-BrideCo-Logo.png"
+              alt="Bride&Co Logo"
+              class="bv-bc-logo"
+            />
+            <span class="bv-20">20</span>
+          </div>
+
+          <div class="bv-logo-block">
+            <img
+              src="https://brideandco.co.za/wp-content/uploads/2026/03/Untitled-design-21.png"
+              alt="BrideVibes Logo"
+              class="bv-logo-img"
+            />
+          </div>
+
+          <p class="bv-join-text">Join Bridevibes &amp; get</p>
+          <p class="bv-discount">15% off</p>
+          <p class="bv-sub-text">on your seasonal<br/>bridal gown</p>
+
+          <a href="https://brideandco.co.za/bridevibes/" class="bv-cta-btn">JOIN NOW</a>
+
+          <p class="bv-tc">T's &amp; C's Apply <span class="bv-tc-note">*Markdowns Excluded</span></p>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* BrideVibes Popup Styles */
+      .bv-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 999999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .bv-popup-container {
+        position: relative;
+        max-width: 700px;
+        width: 92%;
+        display: flex;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+        min-height: 420px;
+      }
+
+      /* LEFT PANEL – model photo */
+      .bv-left-panel {
+        flex: 1.1;
+        background-image: url("https://brideandco.co.za/wp-content/uploads/2026/03/Untitled-design-21.png");
+        background-size: cover;
+        background-position: center top;
+        min-height: 420px;
+      }
+
+      /* RIGHT PANEL – pink content */
+      .bv-right-panel {
+        flex: 1;
+        background-color: #f5a7b8;
+        padding: 35px 28px 22px 28px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+      }
+
+      .bv-close-btn {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        background: none;
+        border: none;
+        color: #333;
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 10;
+        padding: 0;
+        line-height: 1;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+      }
+
+      .bv-close-btn:hover {
+        opacity: 1;
+      }
+
+      /* Brand header row */
+      .bv-brand-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        margin-bottom: 14px;
+      }
+
+      .bv-bc-logo {
+        height: 22px;
+        width: auto;
+        filter: brightness(0);
+      }
+
+      .bv-20 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #222;
+        font-family: Georgia, serif;
+        line-height: 1;
+      }
+
+      /* BrideVibes logo image */
+      .bv-logo-block {
+        margin-bottom: 16px;
+      }
+
+      .bv-logo-img {
+        max-width: 180px;
+        width: 100%;
+        height: auto;
+      }
+
+      /* Text content */
+      .bv-join-text {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 16px;
+        color: #222;
+        margin: 0 0 4px 0 !important;
+        font-weight: 400;
+      }
+
+      .bv-discount {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 42px;
+        font-weight: 700;
+        color: #111;
+        margin: 0 0 4px 0 !important;
+        line-height: 1;
+      }
+
+      .bv-sub-text {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 16px;
+        color: #222;
+        margin: 0 0 22px 0 !important;
+        line-height: 1.5;
+      }
+
+      /* CTA Button */
+      .bv-cta-btn {
+        display: inline-block;
+        background: #111;
+        color: #fff !important;
+        padding: 12px 36px;
+        text-decoration: none !important;
+        font-family: "Trebuchet MS", Arial, sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 3px;
+        transition: background 0.25s ease, transform 0.2s ease;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      }
+
+      .bv-cta-btn:hover {
+        background: #3a0010;
+        transform: translateY(-2px);
+        text-decoration: none !important;
+      }
+
+      /* T&Cs */
+      .bv-tc {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        color: #333;
+        margin: 0 !important;
+        font-style: italic;
+      }
+
+      .bv-tc-note {
+        display: block;
+        font-size: 9px;
+        color: #555;
+      }
+
+      /* ── Responsive ── */
+      @media screen and (max-width: 600px) {
+        .bv-left-panel {
+          display: none; /* hide model on small screens, show full pink */
+        }
+
+        .bv-right-panel {
+          padding: 40px 24px 24px 24px;
+          flex: 1;
+        }
+
+        .bv-discount {
+          font-size: 36px;
+        }
+      }
+    </style>
+
+    <script>
+      (function () {
+        function initBrideVibesPopup() {
+          var popup = document.getElementById("bridevibes-popup");
+          var closeBtn = document.querySelector(".bv-close-btn");
+          if (!popup) return;
+
+          // Show after short delay
+          setTimeout(function () {
+            popup.style.display = "flex";
+          }, 600);
+
+          function closePopup() {
+            popup.style.display = "none";
+          }
+
+          if (closeBtn) closeBtn.addEventListener("click", closePopup);
+
+          popup.addEventListener("click", function (e) {
+            if (e.target === popup) closePopup();
+          });
+
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" || e.keyCode === 27) closePopup();
+          });
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initBrideVibesPopup);
+        } else {
+          initBrideVibesPopup();
+        }
+      })();
+    </script>
+    <?php
+}
+
+add_action('wp_footer', 'bridevibes_popup');
