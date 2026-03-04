@@ -11084,7 +11084,6 @@ function brideco_booking_notice_popup() {
             <div class="bn-content-wrapper">
                 <div class="bn-main-content">
 
-                    <div class="bn-icon">🛠️</div>
 
                     <h1 class="bn-title">BOOKING NOTICE</h1>
 
