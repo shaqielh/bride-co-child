@@ -126,7 +126,7 @@
   <h3>BrideVibes</h3>
   <p>Join The Digital I Do Crew</p>
   <a href="<?php echo esc_url(home_url('/bridevibes-weddings/')); ?>" class="bride-vibes-button">Sign-up To BrideVibes</a>
-  <a href="https://stage.brideandco.co.za/wp-content/uploads/2025/04/Brideco-Personal-Wedding-Planner.pdf" 
+  <a href="/wp-content/uploads/2025/04/Brideco-Personal-Wedding-Planner.pdf" 
    class="bride-vibes-button" 
    target="_blank" 
    rel="noopener noreferrer">
