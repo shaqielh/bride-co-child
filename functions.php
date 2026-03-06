@@ -11018,7 +11018,7 @@ JS;
 
 
 require_once get_stylesheet_directory() . '/inc/stock-rules.php';
-
+<?php
 /**
  * Booking System Notice Popup
  * Shows everywhere EXCEPT:
@@ -11041,11 +11041,9 @@ function brideco_booking_notice_popup() {
 
             if ( $bridal_term && ! is_wp_error( $bridal_term ) ) {
 
-                // Get all descendant IDs of bridal
                 $child_ids   = get_term_children( $bridal_term->term_id, 'product_cat' );
                 $all_ids     = array_merge( array( $bridal_term->term_id ), $child_ids );
 
-                // Also walk up the ancestor chain of the current term
                 $ancestor_ids        = get_ancestors( (int) $current_term->term_id, 'product_cat' );
                 $terms_to_check      = array_merge( array( (int) $current_term->term_id ), array_map( 'intval', $ancestor_ids ) );
 
@@ -11083,7 +11081,6 @@ function brideco_booking_notice_popup() {
 
             <div class="bn-content-wrapper">
                 <div class="bn-main-content">
-
 
                     <h1 class="bn-title">BOOKING NOTICE</h1>
 
@@ -11134,7 +11131,6 @@ function brideco_booking_notice_popup() {
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        /* Dark overlay on top of bg image so text is readable */
         .bn-popup-container::before {
             content: "";
             position: absolute;
@@ -11255,7 +11251,6 @@ function brideco_booking_notice_popup() {
             color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Responsive */
         @media screen and (max-width: 768px) {
             .bn-content-wrapper {
                 padding: 50px 28px 40px;
@@ -11297,11 +11292,35 @@ function brideco_booking_notice_popup() {
     <script>
         (function () {
 
+            var STORAGE_KEY = 'bn_popup_last_shown';
+
+            function getTodayStamp() {
+                var d = new Date();
+                return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+            }
+
+            function hasSeenToday() {
+                try {
+                    return localStorage.getItem(STORAGE_KEY) === getTodayStamp();
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function markSeenToday() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, getTodayStamp());
+                } catch (e) {}
+            }
+
             function initBookingNoticePopup() {
-                var popup   = document.getElementById("booking-notice-popup");
-                var closeBtn     = document.querySelector(".bn-close-btn");
-                var dismissBtn   = document.querySelector(".bn-dismiss-btn");
+                var popup      = document.getElementById("booking-notice-popup");
+                var closeBtn   = document.querySelector(".bn-close-btn");
+                var dismissBtn = document.querySelector(".bn-dismiss-btn");
                 if (!popup) return;
+
+                // Don't show if already seen today
+                if (hasSeenToday()) return;
 
                 setTimeout(function () {
                     popup.style.display = "flex";
@@ -11309,10 +11328,11 @@ function brideco_booking_notice_popup() {
 
                 function closePopup() {
                     popup.style.display = "none";
+                    markSeenToday();
                 }
 
-                if (closeBtn)    closeBtn.addEventListener("click", closePopup);
-                if (dismissBtn)  dismissBtn.addEventListener("click", closePopup);
+                if (closeBtn)   closeBtn.addEventListener("click", closePopup);
+                if (dismissBtn) dismissBtn.addEventListener("click", closePopup);
 
                 popup.addEventListener("click", function (e) {
                     if (e.target === popup) closePopup();
@@ -11335,6 +11355,7 @@ function brideco_booking_notice_popup() {
 }
 
 add_action('wp_footer', 'brideco_booking_notice_popup');
+
 
 /**
  * Display BrideVibes popup on bridal category pages, children, and products
@@ -11385,12 +11406,8 @@ function bridevibes_popup() {
 
         <button class="bv-close" type="button">&times;</button>
 
-        <!-- Full background image (model + diagonal pink) -->
-        <!-- All content sits on the right pink half -->
-
         <div class="bv-content">
 
-          <!-- Bride&Co logo — top right of pink area -->
           <div class="bv-bnc-wrap">
             <img
               src="https://brideandco.co.za/wp-content/uploads/2022/05/cropped-cropped-cropped-cropped-cropped-cropped-BrideCo-Logo.png"
@@ -11401,7 +11418,6 @@ function bridevibes_popup() {
             <span class="bv-tagline">A Lifetime of Moments</span>
           </div>
 
-          <!-- BrideVibes BV logo -->
           <div class="bv-logo-wrap">
             <img
               src="https://brideandco.co.za/wp-content/uploads/2026/03/BV-BNC-logo-combo-PNG.png"
@@ -11410,17 +11426,14 @@ function bridevibes_popup() {
             />
           </div>
 
-          <!-- Offer text -->
           <p class="bv-join">Join Bridevibes &amp; get</p>
           <p class="bv-pct">15% off</p>
           <p class="bv-desc">on your seasonal<br>bridal gown</p>
 
-          <!-- CTA -->
           <a href="https://brideandco.co.za/bridevibes/" class="bv-btn">JOIN NOW</a>
 
         </div>
 
-        <!-- T&Cs pinned bottom-left over the image -->
         <div class="bv-tc">
           T's &amp; C's Apply<br>
           <span>*Markdowns Excluded</span>
@@ -11430,7 +11443,6 @@ function bridevibes_popup() {
     </div>
 
     <style>
-      /* ── Overlay ── */
       .bv-overlay {
         position: fixed;
         inset: 0;
@@ -11441,12 +11453,11 @@ function bridevibes_popup() {
         align-items: center;
       }
 
-      /* ── Modal shell — full background image ── */
       .bv-modal {
         position: relative;
         width: 92%;
         max-width: 700px;
-        aspect-ratio: 700 / 467; /* matches original ad ratio */
+        aspect-ratio: 700 / 467;
         border-radius: 6px;
         overflow: hidden;
         box-shadow: 0 24px 64px rgba(0,0,0,0.55);
@@ -11455,7 +11466,6 @@ function bridevibes_popup() {
         background-position: center center;
       }
 
-      /* ── Close button ── */
       .bv-close {
         position: absolute;
         top: 10px;
@@ -11473,7 +11483,6 @@ function bridevibes_popup() {
       }
       .bv-close:hover { opacity: 1; }
 
-      /* ── Content block — right ~48% of modal ── */
       .bv-content {
         position: absolute;
         top: 0;
@@ -11489,7 +11498,6 @@ function bridevibes_popup() {
         text-align: center;
       }
 
-      /* Bride&Co header row */
       .bv-bnc-wrap {
         position: absolute;
         top: 5%;
@@ -11501,7 +11509,7 @@ function bridevibes_popup() {
       .bv-bnc-logo {
         height: 18px;
         width: auto;
-        filter: brightness(0); /* make it dark/black */
+        filter: brightness(0);
       }
       .bv-20 {
         font-size: 11px;
@@ -11511,10 +11519,9 @@ function bridevibes_popup() {
         margin-top: -2px;
       }
       .bv-tagline {
-        display: none; /* too small to render cleanly */
+        display: none;
       }
 
-      /* BrideVibes logo — black bg so we use mix-blend-mode to drop the black */
       .bv-logo-wrap {
         margin-bottom: 8%;
         width: 85%;
@@ -11523,10 +11530,9 @@ function bridevibes_popup() {
         width: 100%;
         height: auto;
         display: block;
-        mix-blend-mode: multiply; /* drops black bg, shows logo on pink */
+        mix-blend-mode: multiply;
       }
 
-      /* Offer text */
       .bv-join {
         font-family: Georgia, serif;
         font-size: clamp(11px, 1.8vw, 16px);
@@ -11549,7 +11555,6 @@ function bridevibes_popup() {
         line-height: 1.5;
       }
 
-      /* CTA button */
       .bv-btn {
         display: inline-block;
         background: #111;
@@ -11571,7 +11576,6 @@ function bridevibes_popup() {
         text-decoration: none !important;
       }
 
-      /* T&Cs — bottom-left corner over the photo */
       .bv-tc {
         position: absolute;
         bottom: 4%;
@@ -11587,7 +11591,6 @@ function bridevibes_popup() {
         font-size: clamp(7px, 1vw, 10px);
       }
 
-      /* ── Mobile ── */
       @media screen and (max-width: 540px) {
         .bv-modal {
           aspect-ratio: auto;
@@ -11606,14 +11609,42 @@ function bridevibes_popup() {
 
     <script>
       (function () {
+
+        var STORAGE_KEY = 'bv_popup_last_shown';
+
+        function getTodayStamp() {
+          var d = new Date();
+          return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+        }
+
+        function hasSeenToday() {
+          try {
+            return localStorage.getItem(STORAGE_KEY) === getTodayStamp();
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function markSeenToday() {
+          try {
+            localStorage.setItem(STORAGE_KEY, getTodayStamp());
+          } catch (e) {}
+        }
+
         function initBVPopup() {
-          var popup   = document.getElementById("bridevibes-popup");
+          var popup    = document.getElementById("bridevibes-popup");
           var closeBtn = document.querySelector(".bv-close");
           if (!popup) return;
 
+          // Don't show if already seen today
+          if (hasSeenToday()) return;
+
           setTimeout(function () { popup.style.display = "flex"; }, 600);
 
-          function closePopup() { popup.style.display = "none"; }
+          function closePopup() {
+            popup.style.display = "none";
+            markSeenToday();
+          }
 
           if (closeBtn) closeBtn.addEventListener("click", closePopup);
           popup.addEventListener("click", function (e) {
