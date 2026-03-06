@@ -11018,7 +11018,7 @@ JS;
 
 
 require_once get_stylesheet_directory() . '/inc/stock-rules.php';
-<?php
+
 /**
  * Booking System Notice Popup
  * Shows everywhere EXCEPT:
@@ -11523,14 +11523,13 @@ function bridevibes_popup() {
       }
 
       .bv-logo-wrap {
-        margin-bottom: 8%;
         width: 85%;
+        margin-bottom: -15%;
       }
       .bv-logo {
         width: 100%;
         height: auto;
         display: block;
-        mix-blend-mode: multiply;
       }
 
       .bv-join {
@@ -11582,7 +11581,7 @@ function bridevibes_popup() {
         left: 3%;
         font-family: Arial, sans-serif;
         font-size: clamp(8px, 1.1vw, 11px);
-        color: #fff;
+        color: #000;
         font-style: italic;
         line-height: 1.5;
         text-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -11600,9 +11599,6 @@ function bridevibes_popup() {
         .bv-content {
           width: 52%;
           padding: 4% 4% 4% 1%;
-        }
-        .bv-logo-wrap {
-          width: 95%;
         }
       }
     </style>
