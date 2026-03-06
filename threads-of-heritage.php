@@ -202,12 +202,12 @@ padding-left:80px;
          <a class="shop-button" href="/book-your-free-fitting" target="_blank" rel="noopener noreferrer">Book a fitting</a>
         <a class="shop-button" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf" target="_blank" rel="noopener noreferrer">Download Knowledge Book</a>
         <a class="shop-button" href="https://brideandco.co.za/wp-content/uploads/2026/03/Threads-of-Heritage-Lookbook_compressed.pdf" target="_blank" rel="noopener noreferrer">Download Lookbook</a>
-       <!-- <a class="shop-button" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf" target="_blank" rel="noopener noreferrer">Pricelist</a> --> 
+       <a class="shop-button" href="https://brideandco.co.za/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist-1.pdf" target="_blank" rel="noopener noreferrer">Pricelist</a>
 </div>
  <a class="shop-button d-md-none" href="/book-your-free-fitting" target="_blank" rel="noopener noreferrer">Book a fitting</a>
         <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Online-Knowledge-Book-Qwerty.pdf" target="_blank" rel="noopener noreferrer">Download Knowledge Book</a>
         <a class="shop-button d-md-none" href="https://brideandco.co.za/wp-content/uploads/2026/03/Threads-of-Heritage-Lookbook_compressed.pdf" target="_blank" rel="noopener noreferrer">Download Lookbook</a>
-       <!-- <a class="shop-button d-md-none" href="/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist.pdf" target="_blank" rel="noopener noreferrer">Pricelist</a>  -->
+      <a class="shop-button d-md-none" href="https://brideandco.co.za/wp-content/uploads/2026/03/Threads-of-Heritage-Pricelist-1.pdf" target="_blank" rel="noopener noreferrer">Pricelist</a> 
     
       </div>
      
